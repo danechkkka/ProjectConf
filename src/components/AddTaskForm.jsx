@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import TaskContext from '../contexts/TaskContext';
-import { Plus } from 'lucide-react';
 
 const AddTaskForm = () => {
   const [title, setTitle] = useState('');
@@ -14,23 +13,26 @@ const AddTaskForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto flex items-center gap-2 mt-8">
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Add a new task..."
-        className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-      />
+    <form onSubmit={handleSubmit} className="flex items-center gap-3">
+      <div className="flex-1 flex items-center gap-2 bg-nothing-gray px-4 py-3">
+        <span className="text-nothing-red">&gt;</span>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="ENTER TASK..."
+          className="bg-transparent outline-none flex-1 placeholder-opacity-50"
+        />
+        <span className="animate-blink">_</span>
+      </div>
       <button
         type="submit"
-        className="bg-indigo-600 text-white p-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 flex items-center justify-center"
-        aria-label="Add Task"
+        className="w-12 h-12 bg-nothing-red text-black flex items-center justify-center hover:animate-glitch text-xl"
       >
-        <Plus size={24} />
+        +
       </button>
     </form>
   );
 };
 
-export default AddTaskForm; 
+export default AddTaskForm;

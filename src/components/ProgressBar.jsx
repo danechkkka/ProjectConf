@@ -1,33 +1,33 @@
 import { useContext } from 'react';
 import TaskContext from '../contexts/TaskContext';
-import { motion } from 'framer-motion';
 
 const ProgressBar = () => {
   const { tasks } = useContext(TaskContext);
+  const completed = tasks.filter(t => t.completed).length;
+  const total = tasks.length;
+  const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-  const completedTasks = tasks.filter(task => task.completed).length;
-  const totalTasks = tasks.length;
-  const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+  const bars = Math.round((progress / 100) * 10);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-8">
-      <div className="flex justify-between items-center mb-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-        <span>Progress</span>
-        <span>{Math.round(progress)}%</span>
+    <div className="space-y-2">
+      <div className="flex justify-between text-sm">
+        <span>PROGRESS</span>
+        <span>{progress}%</span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <motion.div
-          className="bg-indigo-600 h-2.5 rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        />
+      <div className="flex gap-1">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className={`w-6 h-6 border ${i < bars ? 'bg-white' : 'border-white/30'}`}
+          />
+        ))}
       </div>
-      <div className="text-center mt-2 text-sm text-gray-500">
-        {completedTasks} of {totalTasks} tasks completed
+      <div className="text-center text-sm opacity-70">
+        {completed} OF {total} TASKS
       </div>
     </div>
   );
 };
 
-export default ProgressBar; 
+export default ProgressBar;

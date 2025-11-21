@@ -1,20 +1,30 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        pixel: ['"Press Start 2P"', 'monospace'],
+        mono: ['VT323', 'monospace'],
       },
-      backgroundImage: {
-        'gradient-light': 'linear-gradient(to top right, #f3e8ff, #e0f2fe)',
-        'gradient-dark': 'linear-gradient(to top right, #1e1b4b, #1e293b)',
+      colors: {
+        red: "#ff0000",
+        gray: "#1a1a1a",
       },
+      animation: {
+        blink: 'blink 1s steps(2, start) infinite',
+        dino: 'dino 2s linear infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        dino: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100vw)' },
+        }
+      }
     },
   },
   plugins: [],
-} 
+}

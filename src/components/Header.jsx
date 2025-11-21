@@ -1,28 +1,27 @@
 import { useContext } from 'react';
-import ThemeToggler from './ThemeToggler';
 import ThemeContext from '../contexts/ThemeContext';
 
 const Header = () => {
-  const { theme } = useContext(ThemeContext);
-
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good Morning';
-    if (hour < 18) return 'Good Afternoon';
-    return 'Good Evening';
+    if (hour < 12) return 'GOOD MORNING';
+    if (hour < 18) return 'GOOD AFTERNOON';
+    return 'GOOD EVENING';
   };
 
   return (
-    <header className="flex justify-between items-center p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+    <header className="flex justify-between items-start">
       <div>
-        <h1 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
-          Smart Daily Planner
+        <h1 className="text-3xl md:text-4xl tracking-widest animate-pulse-slow">
+          NOVA
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">{getGreeting()}</p>
+        <p className="mt-1 text-lg opacity-80">
+          {getGreeting()} <span className="animate-blink">_</span>
+        </p>
       </div>
-      <ThemeToggler />
+      <div className="text-2xl opacity-50">●</div>
     </header>
   );
 };
 
-export default Header; 
+export default Header;
